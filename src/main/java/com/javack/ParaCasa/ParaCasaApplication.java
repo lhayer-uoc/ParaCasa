@@ -9,5 +9,7 @@ public class ParaCasaApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ParaCasaApplication.class, args);
 	}
+	
+	//prueba escritura
 
 }
