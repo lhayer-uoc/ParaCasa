@@ -1,0 +1,6 @@
+FROM openjdk:17-jdk-alpine
+RUN addgoup -S spring && adduser -S spring -G spring
+USER spring:spring
+ARG JAR_FILE=target/*.jar
+COPY ${JAR_FILE} paraCasa-1.0.jar
+ENTRYPOINT ["java", "-jar", "/paraCasa-1.0.jar"]
