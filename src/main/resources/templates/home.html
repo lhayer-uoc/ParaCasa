@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-	<head>
-		<meta charset="ISO-8859-1">
-		<title>Proyecto ParaCasa. Grupo Javack.</title>
+	<head th:replace="plantilla/template :: head">
 	</head>
+	
 	<body>
-	<h1  th:text="'Hola equipo ' + ${nombre} + '!'" ></h1>
-	<p th:text="${hoy}" />
+	<header th:replace="plantilla/template :: header"></header>
+	
+	<h1>Hola</h1>
+
+	<footer th:replace="plantilla/template :: footer"></footer>
+	
 	</body>
 </html>
