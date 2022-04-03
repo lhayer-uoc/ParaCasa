@@ -8,26 +8,25 @@
 
 	<div class="container">
 	
-	<div class="container">
 	
 	<div class="card bg-light">
-		<div class="card-header bg-dark text-white"></div>
+		<div class="card-header bg-dark text-white" th:text="${titulo}"></div>
 		<div class="card-body">
 	
 	
 	</div>
 	
 	
-		<form>
+		<form th:action="@{/views/menus/save}" th:object="${menu}" method="post">
 			<div class="form-group row">
 				<label class="col-md-2" for="id">Id:</label>
-				 <input type="text" class="form-control form-control-sm col-md-2" id="id"
+				 <input type="text" th:field="*{id}" class="form-control form-control-sm col-md-2" id="id"
 					placeholder="Id del menu">
 			</div>
 
 			<div class="form-group row">
 				<label class="col-md-2" for="precio">Precio:</label> 
-				<input type="number" step="any" class="form-control form-control-sm col-md-2" id="precio"
+				<input type="number" step="any" th:field="*{precio}" class="form-control form-control-sm col-md-2" id="precio"
 					placeholder="Precio del menu">
 			</div>
 
@@ -40,8 +39,6 @@
 		</div>
 	</div>
 
-
-	</div>
 
 	<footer th:replace="plantilla/template :: footer"></footer>
 	

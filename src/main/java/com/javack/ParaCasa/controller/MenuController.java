@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.javack.ParaCasa.modelo.entity.Menu;
@@ -29,8 +31,28 @@ public class MenuController {
 	
 	
 	@GetMapping("/create")
-	public String crear() {
+	public String crear(Model model) {
+		
+		Menu menu = new Menu();
+		
+		
+		model.addAttribute("titulo", "Formulario: nuevo Menu");
+		model.addAttribute("menu", menu);
+		
 		return "/views/menus/frmCrear";
 	}
+	
+	
+	@PostMapping("/save")
+	public String guardar(@ModelAttribute Menu menu) {
+		
+		menuService.guardar(menu);
+		System.out.println("Menu guardado con exito");
+		
+		
+		return "redirect:/views/menus/";
+	}
+	
+	
 	
 }
