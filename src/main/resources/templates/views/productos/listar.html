@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="plantilla/template :: head">
+	</head>
+
+	<body>
+	<header th:replace="plantilla/template :: header"></header>
+
+	<div class="container">
+	<h1 th:text="${titulo}"></h1>
+	</div>
+
+	<div class="container">
+
+		<a class="btn btn-primary btn-sm" th:href="@{/views/productos/create}"
+			th:text="'Nuevo Producto'" title="Crear Nuevo Producto"></a>
+		<table class="table">
+			<thead class="thead-dark">
+				<tr>
+					<th scope="col">Id</th>
+					<th scope="col">Nombre</th>
+					<th scope="col">Descripcion</th>
+					<th scope="col">Kcal</th>
+					<th scope="col">Editar</th>
+					<th scope="col">Eliminar</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr th:each="cl:${productos}">
+					<th scope="row" th:text="${cl.id}"></th>
+					<td th:text="${cl.nombre}"></td>
+					<td th:text="${cl.descripcion}"></td>
+					<td th:text="${cl.kcal}"></td>
+					<td><a class="btn btn-success btn-sm"
+						th:href="@{/views/productos/edit/} + ${cl.id}" 
+						th:text="'Editar'"
+						title="Editar Tipo"></a></td>
+
+					<td><a class="btn btn-danger btn-sm"
+						th:href="@{/views/productos/delete/} + ${cl.id}" 
+						th:text="'Eliminar'"
+						title="Eliminar Tipo"></a></td>
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+
+
+
+	<footer th:replace="plantilla/template :: footer"></footer>
+
+	</body>
+</html>
