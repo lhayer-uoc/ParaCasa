@@ -36,7 +36,8 @@
 					<td><a class="btn btn-danger btn-sm"
 						th:href="@{/views/menus/delete/} + ${cl.id}" 
 						th:text="'Eliminar'"
-						title="Eliminar Menu"></a></td>
+						title="Eliminar Menu"
+						onclick="return confirm('¿Seguro que quiere eliminar este menu?')"></a></td>
 				</tr>
 			</tbody>
 		</table>

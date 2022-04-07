@@ -18,13 +18,13 @@
 	
 	
 		<form th:action="@{/views/menus/save}" th:object="${menu}" method="post">
-
-
 			<div class="form-group row">
+			
 				<input type="hidden" th:field="*{id}">
 				<label class="col-md-2" for="precio">Precio:</label> 
-				<input type="number" step="any" th:field="*{precio}" class="form-control form-control-sm col-md-2" id="precio"
+				<input type="number" th:field=*{precio} class="form-control form-control-sm col-md-2" id="precio"
 					placeholder="Precio del menu">
+					<small></small>
 			</div>
 
 

@@ -2,11 +2,13 @@ package com.javack.ParaCasa.modelo.entity;
 
 import java.io.Serializable;
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name="menu")
@@ -19,7 +21,11 @@ public class Menu implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private String id;
-	private float precio;
+	
+	private double precio;
+
+	
+	
 	
 	public String getId() {
 		return id;
@@ -30,11 +36,11 @@ public class Menu implements Serializable{
 	}
 	
 	
-	public float getPrecio() {
+	public double getPrecio() {
 		return precio;
 	}
 	
-	public void setPrecio(float precio) {
+	public void setPrecio(double precio) {
 		this.precio=precio;
 	}
 
