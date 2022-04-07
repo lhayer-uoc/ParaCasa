@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.javack.ParaCasa.modelo.entity.Menu;
 
 @Repository
-public interface MenuRepository extends CrudRepository<Menu, String> {
+public interface MenuRepository extends CrudRepository<Menu, Long> {
 
 	
 }

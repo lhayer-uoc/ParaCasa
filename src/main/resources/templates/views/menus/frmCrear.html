@@ -13,21 +13,15 @@
 		<div class="card-header bg-dark text-white" th:text="${titulo}"></div>
 		<div class="card-body">
 	
-	
-	</div>
-	
-	
+
 		<form th:action="@{/views/menus/save}" th:object="${menu}" method="post">
 			<div class="form-group row">
-				<label class="col-md-2" for="id">Id:</label>
-				 <input type="text" th:field="*{id}" class="form-control form-control-sm col-md-2" id="id"
-					placeholder="Id del menu">
-			</div>
+				<input type="hidden" th:field="*{id}">
 
-			<div class="form-group row">
 				<label class="col-md-2" for="precio">Precio:</label> 
-				<input type="number" step="any" th:field="*{precio}" class="form-control form-control-sm col-md-2" id="precio"
+				<input type="number" step="0.01" th:field="*{precio}" class="form-control form-control-sm col-md-6" id="precio"
 					placeholder="Precio del menu">
+					<small></small>
 			</div>
 
 
@@ -36,6 +30,7 @@
 			</div>
 		</form>
 		
+		</div>
 		</div>
 	</div>
 

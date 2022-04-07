@@ -16,25 +16,26 @@ public class Menu implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
-	private float precio;
+	private Long id;
+	private Double precio;
 	
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 	
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id=id;
 	}
 	
 	
-	public float getPrecio() {
+	public Double getPrecio() {
 		return precio;
 	}
 	
-	public void setPrecio(float precio) {
+	public void setPrecio(Double precio) {
 		this.precio=precio;
 	}
 

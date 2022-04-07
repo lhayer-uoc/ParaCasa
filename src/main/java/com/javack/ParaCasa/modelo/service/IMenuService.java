@@ -8,6 +8,6 @@ public interface IMenuService {
 
 	public List<Menu> listarTodos();
 	public void guardar (Menu menu);
-	public Menu buscarPorId(String id);
-	public void eliminar(String id);
+	public Menu buscarPorId(Long id);
+	public void eliminar(Long id);
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -53,6 +54,28 @@ public class MenuController {
 		return "redirect:/views/menus/";
 	}
 	
+	@GetMapping("/edit/{id}")
+	public String editar(@PathVariable("id") Long idMenu, Model model) {
+		
+		Menu menu = menuService.buscarPorId(idMenu);
+		
+		
+		model.addAttribute("titulo", "Formulario: nuevo Menu");
+		model.addAttribute("menu", menu);
+		
+		return "/views/menus/frmCrear";
+	}
 	
+	@GetMapping("/delete/{id}")
+	public String eliminar(@PathVariable("id") Long idMenu) {
+
+		menuService.eliminar(idMenu);
+
+		System.out.println("Registro de menu eliminado con exito");
+
+		return "redirect:/views/menus/";
+	
+	
+	}
 	
 }

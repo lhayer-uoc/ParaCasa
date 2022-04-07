@@ -27,12 +27,12 @@ public class MenuServiceImplement implements IMenuService {
 	}
 
 	@Override
-	public Menu buscarPorId(String id) {
+	public Menu buscarPorId(Long id) {
 		return menuRepository.findById(id).orElse(null);
 	}
 
 	@Override
-	public void eliminar(String id) {
+	public void eliminar(Long id) {
 		menuRepository.deleteById(id);
 
 	}
