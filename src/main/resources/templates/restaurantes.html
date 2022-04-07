@@ -1,0 +1,13 @@
+<!DOCTYPE html >
+<html xmlns:th="http://www.thymeLeaf.org">
+<head>
+		<meta charset="ISO-8859-1">
+		<title>Proyecto. Grupo Javack. ParaCasa.</title>
+	</head>
+	<body>
+			<h1>Restaurantes</h1>
+			<ul >
+			<li th:each="restaurante : ${restaurantes}" th:text="${restaurante}"></li>
+			</ul>
+	</body>
+</html>

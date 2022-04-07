@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="plantilla/template :: head">
+	</head>
+	
+	<body>
+	<header th:replace="plantilla/template :: header"></header>
+
+	<div class="container">
+	
+	
+	<div class="card bg-light">
+		<div class="card-header bg-dark text-white" th:text="${titulo}"></div>
+		<div class="card-body">
+	
+
+		<form th:action="@{/views/menus/save}" th:object="${menu}" method="post">
+			<div class="form-group row">
+				<input type="hidden" th:field="*{id}">
+
+				<label class="col-md-2" for="precio">Precio:</label> 
+				<input type="number" step="0.01" th:field="*{precio}" class="form-control form-control-sm col-md-6" id="precio"
+					placeholder="Precio del menu">
+					<small></small>
+			</div>
+
+
+			<div class="card-footer bd-dark">
+			<input type="submit" class="btn btn-primary btn-sm" value="Guardar"/>
+			</div>
+		</form>
+		
+		</div>
+		</div>
+	</div>
+
+
+	<footer th:replace="plantilla/template :: footer"></footer>
+	
+	</body>
+</html>
