@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="plantilla/template :: head">
+</head>
+
+<body>
+	<header th:replace="plantilla/template :: header"></header>
+
+	<div class="container">
+
+
+		<div class="card bg-light">
+			<div class="card-header bg-dark text-white" th:text="${titulo}"></div>
+			<div class="card-body"></div>
+
+
+			<form th:action="@{/views/tipos/save}" th:object="${tipo}"
+				method="post">
+
+
+				<div class="form-group row">
+					<input type="hidden" th:field="*{id}">
+					<label class="col-md-2" for="nombre">Nombre:</label>
+					<input
+						type="text" th:field="*{nombre}"
+						class="form-control form-control-sm col-md-2" id="nombre"
+						placeholder="Nombre del tipo">
+					<label class="col-md-2" for="descripcion">Descripción:</label>
+					<input
+						type="text" th:field="*{descripcion}"
+						class="form-control form-control-sm col-md-2" id="descripcion"
+						placeholder="Descripción del tipo">
+				</div>
+
+				<div class="card-footer bd-dark">
+					<input type="submit" class="btn btn-primary btn-sm" value="Guardar" />
+				</div>
+			</form>
+
+		</div>
+	</div>
+
+
+	<footer th:replace="plantilla/template :: footer"></footer>
+
+</body>
+</html>

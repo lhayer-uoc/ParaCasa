@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="plantilla/template :: head">
+</head>
+
+<body>
+	<header th:replace="plantilla/template :: header"></header>
+
+
+	<div class="container">
+		<h1 th:text="${titulo}"></h1>
+	</div>
+	<div class="container">
+		<table class="table">
+			<thead class="thead-dark">
+				<tr>
+					<th scope="col">Id</th>
+					<th scope="col">Correo</th>
+					<th scope="col">Nombre</th>
+					<th scope="col">Usuario</th>
+					<th scope="col">Password</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="us:${usuarios}">
+					<th scope="row" th:text="${us.id}"></th>
+					<td th:text="${us.correo}"></td th:text="${us.correo}">
+					<td th:text="${us.nombre}"></td>
+					<td th:text="${us.usuario}"></td>
+					<td th:text="${us.password}"></td>
+				</tr th:each="us:${usuarios}">
+
+			</tbody>
+		</table>
+	</div>
+
+	<footer th:replace="plantilla/template :: footer"></footer>
+
+</body>
+
+</html>
