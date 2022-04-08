@@ -2,9 +2,13 @@ package com.javack.ParaCasa.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -45,7 +49,15 @@ public class MenuController {
 	
 	
 	@PostMapping("/save")
-	public String guardar(@ModelAttribute Menu menu) {
+	public String guardar(@Valid @ModelAttribute Menu menu, BindingResult result, Model model) {
+		
+		if(result.hasErrors()) {
+			
+			model.addAttribute("titulo", "Formulario: nuevo Menu");
+			model.addAttribute("menu", menu);
+			System.out.println("Hubo problemas al rellenar el formulario, intentelo de nuevo");
+			return "/views/menus/frmCrear";
+		}
 		
 		menuService.guardar(menu);
 		System.out.println("Menu guardado con exito");
@@ -57,7 +69,24 @@ public class MenuController {
 	@GetMapping("/edit/{id}")
 	public String editar(@PathVariable("id") Long idMenu, Model model) {
 		
-		Menu menu = menuService.buscarPorId(idMenu);
+		Menu menu = null;
+		
+		//Esta comprobación sirve para que no se pueda meter en el buscador un número incorrecto
+		if(idMenu > 0) {
+			
+			menu = menuService.buscarPorId(idMenu);
+			
+			if(menu == null) {
+				System.err.println("error: El ID del cliente no existe");
+				
+				return "redirect:/views/menus/";
+			}
+		}else {
+			System.err.println("error: El ID del cliente no cumple con los requerimientos");
+			
+			return "redirect:/views/menus/";
+			
+		}
 		
 		
 		model.addAttribute("titulo", "Formulario: nuevo Menu");
@@ -69,6 +98,25 @@ public class MenuController {
 	@GetMapping("/delete/{id}")
 	public String eliminar(@PathVariable("id") Long idMenu) {
 
+Menu menu = null;
+		
+		//Esta comprobación sirve para que no se pueda meter en el buscador un número incorrecto
+		if(idMenu > 0) {
+			
+			menu = menuService.buscarPorId(idMenu);
+			
+			if(menu == null) {
+				System.err.println("error: El ID del cliente no existe");
+				
+				return "redirect:/views/menus/";
+			}
+		}else {
+			System.err.println("error: El ID del cliente no cumple con los requerimientos");
+			
+			return "redirect:/views/menus/";
+			
+		}
+		
 		menuService.eliminar(idMenu);
 
 		System.out.println("Registro de menu eliminado con exito");
