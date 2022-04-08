@@ -8,6 +8,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotNull;
+
+
+
+
+
 @Entity
 @Table(name="menu")
 public class Menu implements Serializable{
@@ -20,6 +28,9 @@ public class Menu implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
+	
+	@NotNull
+	@DecimalMin("1.0") @DecimalMax("999.9")
 	private Double precio;
 	
 	public Long getId() {
