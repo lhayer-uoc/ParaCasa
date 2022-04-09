@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="plantilla/template :: head">
+	</head>
+	
+	<body>
+	<header th:replace="plantilla/template :: header"></header>
+		
+		
+	<div class="container">
+		<h1 th:text="${titulo}"></h1>
+	</div>
+
+	<p>
+	<div class="container"> <div class="d-grid gap-2">
+		<a class="btn btn-primary" type="button" th:href="@{/views/pedidos/create}">Hacer un Pedido</a>
+	</div> </div>
+	</p>
+	
+	<div class="container">
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">ID</th>
+					<th scope="col">fecha</th>
+					<th scope="col">ID Menu</th>
+					<th scope="col">Total</th>
+					<th scope="col">Usuario</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="ped:${pedidos}">
+					<th scope="row" th:text="${ped.id}"></th>
+					<td th:text="${ped.fecha}"></td>
+					<td th:text="${ped.id_menu}"></td>
+					<td th:text="${ped.total}"></td>
+					<td th:text="${ped.id_usuario}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+
+	<footer th:replace="plantilla/template :: footer"></footer>
+	
+	</body>
+</html>
