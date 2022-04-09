@@ -52,8 +52,12 @@
 		    <groupId>org.webjars</groupId>
     		<artifactId>bootstrap</artifactId>
     		<version>4.0.0-2</version>
+		</dependency>	
+		<dependency>
+    		<groupId>org.hibernate.validator</groupId>
+    		<artifactId>hibernate-validator</artifactId>
 		</dependency>
-	</dependencies>	
+	</dependencies>
 	<build>
 		<plugins>
 			<plugin>
@@ -64,3 +68,4 @@
 	</build>
 
 </project>
+  
