@@ -20,15 +20,22 @@
 				<br>
 				<h4>¿Seguro que desea eliminar este menu?</h4>
 				<br>
-				<button class="btn btn-success" onclick="goBack()">Cancelar</button>
+				
+				<div>
+				<table align="center">
+				<tr>
+				<td><button class="btn btn-info" onclick="goBack()">Cancelar</button></td>
 				
 				
-				<div><a class="btn btn-danger btn-sm"
+				<td><div><a class="btn btn-danger"
 						th:href="@{/views/menus/delete/} + ${id}" 
 						th:text="'Eliminar'"
 						title="Eliminar Menu"
 						onclick="return confirm('Estas seguro de eliminar el registro?')"
-						></a></div>
+						></a></div></td>
+				</tr>
+				</table>
+				</div>
 		</div>
 	</div>
 
