@@ -69,6 +69,25 @@ public class MenuController {
 	@GetMapping("/delete/{id}")
 	public String eliminar(@PathVariable("id") Long idMenu) {
 
+		Menu menu = null;
+		
+		//Esta comprobación sirve para que no se pueda meter en el buscador un número incorrecto
+		if(idMenu > 0) {
+			
+			menu = menuService.buscarPorId(idMenu);
+			
+			if(menu == null) {
+				System.err.println("error: El ID del cliente no existe");
+				
+				return "redirect:/views/menus/";
+			}
+		}else {
+			System.err.println("error: El ID del cliente no cumple con los requerimientos");
+			
+			return "redirect:/views/menus/";
+			
+		}
+		
 		menuService.eliminar(idMenu);
 
 		System.out.println("Registro de menu eliminado con exito");
@@ -78,4 +97,10 @@ public class MenuController {
 	
 	}
 	
+	@GetMapping("/confirmDelete/{id}")
+	public String pantallaEliminar(@PathVariable("id") Long id, Model modelo) {
+		modelo.addAttribute("menu", menuService.buscarPorId(id));
+		return "/views/menus/eliminarMenu";
+		
+	}
 }
