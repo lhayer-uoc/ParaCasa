@@ -102,7 +102,7 @@ public class ProductoController {
 		//Esta comprobación sirve para que no se pueda meter en el buscador un número incorrecto
 		if(idProducto > 0) {
 
-			producto = productoService.buscarPorId(idTipo);
+			producto = productoService.buscarPorId(idProducto);
 
 			if(producto == null) {
 				System.err.println("error: El ID del producto no existe");
@@ -121,6 +121,13 @@ public class ProductoController {
 		System.out.println("Registro de producto eliminado con exito");
 
 		return "redirect:/views/productos/";
+	}
+	
+	@GetMapping("/confirmDelete/{id}")
+	public String pantallaEliminar(@PathVariable("id") Long id, Model modelo) {
+		modelo.addAttribute("producto", productoService.buscarPorId(id));
+		return "/views/productos/eliminarProducto";
+
 	}
 
 
