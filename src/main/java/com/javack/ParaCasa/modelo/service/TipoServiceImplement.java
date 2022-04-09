@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.javack.ParaCasa.modelo.entity.Menu;
 import com.javack.ParaCasa.modelo.entity.Tipo;
 import com.javack.ParaCasa.modelo.repository.TipoRepository;
 
