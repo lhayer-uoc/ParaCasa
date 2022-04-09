@@ -8,23 +8,27 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import javax.validation.constraints.NotEmpty;
+
 @Entity
-@Table(name="tipo")
+@Table(name = "tipo")
 public class Tipo implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private String id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
+	@NotEmpty
 	private String nombre;
 	private String descripcion;
 
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
-		this.id=id;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getNombre() {
@@ -32,7 +36,7 @@ public class Tipo implements Serializable {
 	}
 
 	public void setNombre(String nombre) {
-		this.nombre=nombre;
+		this.nombre = nombre;
 	}
 
 	public String getDescripcion() {
@@ -40,12 +44,12 @@ public class Tipo implements Serializable {
 	}
 
 	public void setDescripcion(String descripcion) {
-		this.descripcion=descripcion;
+		this.descripcion = descripcion;
 	}
 
 	@Override
 	public String toString() {
-		return "Tipo [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion+ "]";
+		return "Tipo [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + "]";
 	}
-	
+
 }

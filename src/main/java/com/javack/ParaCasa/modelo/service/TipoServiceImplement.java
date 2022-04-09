@@ -25,14 +25,14 @@ public class TipoServiceImplement implements ITipoService {
 		tipoRepository.save(tipo);
 
 	}
-
+	
 	@Override
-	public Tipo buscarPorId(String id) {
+	public Tipo buscarPorId(Long id) {
 		return tipoRepository.findById(id).orElse(null);
 	}
 
 	@Override
-	public void eliminar(String id) {
+	public void eliminar(Long id) {
 		tipoRepository.deleteById(id);
 
 	}
