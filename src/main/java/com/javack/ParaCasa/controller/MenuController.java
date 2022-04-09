@@ -98,7 +98,7 @@ public class MenuController {
 	@GetMapping("/delete/{id}")
 	public String eliminar(@PathVariable("id") Long idMenu) {
 
-Menu menu = null;
+		Menu menu = null;
 		
 		//Esta comprobación sirve para que no se pueda meter en el buscador un número incorrecto
 		if(idMenu > 0) {
@@ -126,4 +126,10 @@ Menu menu = null;
 	
 	}
 	
+	@GetMapping("/confirmDelete/{id}")
+	public String pantallaEliminar(@PathVariable("id") Long id, Model modelo) {
+		modelo.addAttribute("menu", menuService.buscarPorId(id));
+		return "/views/menus/eliminarMenu";
+		
+	}
 }
