@@ -38,6 +38,13 @@
 						type="number" step="1" th:field="*{kcal}"
 						class="form-control form-control-sm col-md-2" id="kcal"
 						placeholder="Kcal del producto">
+					
+					<label class="col-md-2" for="tipo">Tipo:</label>
+					<select th:field="*{tipo}" class="form-control form-control-sm col-md-6" id="tipo">
+    					<option th:each="tipo : ${tipos}"
+    						th:value="${tipo.id}"
+    						 th:text="${tipo.nombre}" />
+					</select>
 				</div>
 
 				<div class="card-footer bd-dark">
