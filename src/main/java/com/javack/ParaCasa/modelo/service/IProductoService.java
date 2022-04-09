@@ -5,6 +5,6 @@ import com.javack.ParaCasa.modelo.entity.Producto;
 public interface IProductoService {
 	public List<Producto> listarTodos();
 	public void guardar (Producto tipo);
-	public Producto buscarPorId(String id);
-	public void eliminar(String id);
+	public Producto buscarPorId(Long id);
+	public void eliminar(Long id);
 }

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.javack.ParaCasa.modelo.entity.Producto;
 
 @Repository
-public interface ProductoRepository extends CrudRepository<Producto, String> {
+public interface ProductoRepository extends CrudRepository<Producto, Long> {
 
 
 }

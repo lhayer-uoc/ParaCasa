@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import javax.validation.constraints.NotEmpty;
+
 @Entity
 @Table(name="producto")
 public class Producto implements Serializable {
@@ -15,16 +17,17 @@ public class Producto implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private String id;
+	private Long id;
+	@NotEmpty
 	private String nombre;
 	private String descripcion;
 	private Integer kcal;
 
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id=id;
 	}
 

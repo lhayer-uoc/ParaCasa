@@ -25,6 +25,8 @@
 						type="text" th:field="*{nombre}"
 						class="form-control form-control-sm col-md-2" id="nombre"
 						placeholder="Nombre del producto">
+					<small class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">
+					</small>
 					<label class="col-md-2" for="descripcion">Descripción:</label>
 					<input
 						type="text" th:field="*{descripcion}"

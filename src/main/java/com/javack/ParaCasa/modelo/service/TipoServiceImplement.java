@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.javack.ParaCasa.modelo.entity.Menu;
 import com.javack.ParaCasa.modelo.entity.Tipo;
 import com.javack.ParaCasa.modelo.repository.TipoRepository;
 
@@ -25,14 +26,14 @@ public class TipoServiceImplement implements ITipoService {
 		tipoRepository.save(tipo);
 
 	}
-
+	
 	@Override
-	public Tipo buscarPorId(String id) {
+	public Tipo buscarPorId(Long id) {
 		return tipoRepository.findById(id).orElse(null);
 	}
 
 	@Override
-	public void eliminar(String id) {
+	public void eliminar(Long id) {
 		tipoRepository.deleteById(id);
 
 	}

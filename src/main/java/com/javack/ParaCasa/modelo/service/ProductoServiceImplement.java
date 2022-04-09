@@ -27,12 +27,12 @@ public class ProductoServiceImplement implements IProductoService {
 	}
 
 	@Override
-	public Producto buscarPorId(String id) {
+	public Producto buscarPorId(Long id) {
 		return productoRepository.findById(id).orElse(null);
 	}
 
 	@Override
-	public void eliminar(String id) {
+	public void eliminar(Long id) {
 		productoRepository.deleteById(id);
 
 	}
