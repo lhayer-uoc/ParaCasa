@@ -6,9 +6,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="producto")
@@ -22,6 +25,9 @@ public class Producto implements Serializable {
 	private String nombre;
 	private String descripcion;
 	private Integer kcal;
+	@ManyToOne
+	@JoinColumn(name="tipo")
+	private Tipo tipo;
 
 	public Long getId() {
 		return id;
@@ -54,6 +60,16 @@ public class Producto implements Serializable {
 	public void setKcal(Integer kcal) {
 		this.kcal=kcal;
 	}
+	
+	public Tipo getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(Tipo tipo) {
+		this.tipo=tipo;
+	}
+	
+	
 
 	@Override
 	public String toString() {

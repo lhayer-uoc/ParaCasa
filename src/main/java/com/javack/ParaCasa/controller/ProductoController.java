@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.javack.ParaCasa.modelo.entity.Producto;
 import com.javack.ParaCasa.modelo.entity.Tipo;
 import com.javack.ParaCasa.modelo.service.IProductoService;
+import com.javack.ParaCasa.modelo.service.ITipoService;
 
 @Controller
 @RequestMapping("/views/productos")
@@ -24,10 +25,13 @@ public class ProductoController {
 
 	@Autowired
 	private IProductoService productoService;
+	@Autowired
+	private ITipoService tipoService;
 
 	@GetMapping("/")
-	public String listarTipos(Model model) {
+	public String listarProductos(Model model) {
 		List<Producto> listadoProductos = productoService.listarTodos();
+		
 
 		model.addAttribute("titulo", "Lista de Productos");
 		model.addAttribute("productos", listadoProductos);
@@ -39,10 +43,12 @@ public class ProductoController {
 	public String crear(Model model) {
 
 		Producto producto = new Producto();
+		List<Tipo> tipos = tipoService.listarTodos();
 
 
 		model.addAttribute("titulo", "Formulario: nuevo Producto");
 		model.addAttribute("producto", producto);
+		model.addAttribute("tipos", tipos);
 
 		return "/views/productos/frmCrear";
 	}
@@ -52,13 +58,15 @@ public class ProductoController {
 	public String guardar(@Valid @ModelAttribute Producto producto, BindingResult result, Model model) {
 
 		if (result.hasErrors()) {
+			List<Tipo> tipos = tipoService.listarTodos();
+			
 			model.addAttribute("titulo", "Formulario: nuevo Producto");
 			model.addAttribute("producto", producto);
+			model.addAttribute("tipos", tipos);
 			System.out.println("Hubo problemas al rellenar el formulario, intentelo de nuevo");
 			return "views/productos/frmCrear";
 		}
 
-		
 		productoService.guardar(producto);
 		System.out.println("Producto guardado con exito");
 
@@ -87,9 +95,12 @@ public class ProductoController {
 			return "redirect:/views/productos/";
 
 		}
+		
+		List<Tipo> tipos = tipoService.listarTodos();
 
 		model.addAttribute("titulo", "Formulario: editar Producto");
 		model.addAttribute("producto", producto);
+		model.addAttribute("tipos", tipos);
 
 		return "/views/productos/frmCrear";
 	}
