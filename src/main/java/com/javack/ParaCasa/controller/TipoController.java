@@ -122,6 +122,13 @@ public class TipoController {
 
 		return "redirect:/views/tipos/";
 	}
+	
+	@GetMapping("/confirmDelete/{id}")
+	public String pantallaEliminar(@PathVariable("id") Long id, Model modelo) {
+		modelo.addAttribute("tipo", tipoService.buscarPorId(id));
+		return "/views/tipos/eliminarTipo";
+
+	}
 
 
 }
