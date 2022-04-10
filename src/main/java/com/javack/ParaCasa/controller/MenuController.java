@@ -38,7 +38,7 @@ public class MenuController {
 		model.addAttribute("titulo", "Lista de Menus");
 		model.addAttribute("menus", listadoMenus);
 		model.addAttribute("productos", listadoProductos);
-		return "/views/menus/listar";
+		return "views/menus/listar";
 	}
 
 	@GetMapping("/create")
@@ -50,7 +50,7 @@ public class MenuController {
 		model.addAttribute("productos", productoService.listarTodos());
 		model.addAttribute("menu", menu);
 
-		return "/views/menus/frmCrear";
+		return "views/menus/frmCrear";
 	}
 
 	@PostMapping("/save")
@@ -62,7 +62,7 @@ public class MenuController {
 			model.addAttribute("menu", menu);
 			model.addAttribute("productos", productoService.listarTodos());
 			System.out.println("Hubo problemas al rellenar el formulario, intentelo de nuevo");
-			return "/views/menus/frmCrear";
+			return "views/menus/frmCrear";
 		}
 
 		menuService.guardar(menu);
@@ -98,7 +98,7 @@ public class MenuController {
 		model.addAttribute("menu", menu);
 		model.addAttribute("productos", productoService.listarTodos());
 
-		return "/views/menus/frmCrear";
+		return "views/menus/frmCrear";
 	}
 
 	@GetMapping("/delete/{id}")
@@ -136,7 +136,7 @@ public class MenuController {
 	public String pantallaEliminar(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("menu", menuService.buscarPorId(id));
 		model.addAttribute("productos", productoService.listarTodos());
-		return "/views/menus/eliminarMenu";
+		return "views/menus/eliminarMenu";
 
 	}
 }

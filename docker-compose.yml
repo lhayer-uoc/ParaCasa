@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+
+  myapp-mysql:
+    image: mysql:8.0
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=db_fp208_spring
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=mysql
+    ports:
+      - 3306:3306
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      - paraCasa-mysql
+      
+  myapp-main:
+    image: springio/para-casa-docker:latest
+    networks:
+      - paraCasa-mysql
+    restart: on-failure
+    depends_on:
+      - myapp-mysql
+    ports:
+      - 8080:8080
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://myapp-mysql:3306/db_fp208_spring
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=none
+   
+volumes:
+  db-data:
+  
+networks:
+  paraCasa-mysql:
