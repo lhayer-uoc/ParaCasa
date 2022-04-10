@@ -19,6 +19,7 @@
 				<tr>
 					<th scope="col">Id</th>
 					<th scope="col">Precio</th>
+					<th scope="col">Productos</th>
 					<th scope="col">Editar</th>
 					<th scope="col">Eliminar</th>
 				</tr>
@@ -28,6 +29,13 @@
 				<tr th:each="cl:${menus}">
 					<th scope="row" th:text="${cl.id}"></th>
 					<td th:text="${cl.precio}"></td>
+					
+					<td>
+						<th:block th:each="producto,iter: ${cl.productos}">
+							<label th:text="${producto.nombre}"></label><br>
+						<th:block th:if="${!iter.last}"></th:block>	
+						</th:block>				
+					</td>
 					
 					<td><a class="btn btn-success btn-sm"
 						th:href="@{/views/menus/edit/} + ${cl.id}" 

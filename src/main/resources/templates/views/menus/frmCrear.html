@@ -16,6 +16,7 @@
 
 		<form th:action="@{/views/menus/save}" th:object="${menu}" method="post">
 			<div class="form-group row">
+			
 				<input type="hidden" th:field="*{id}">
 
 				<label class="col-md-2" for="precio">Precio:</label> 
@@ -24,6 +25,13 @@
 					<small class="form-text text-danger" th:if="${#fields.hasErrors('precio')}"
 						th:errors="*{precio}">
 					</small>
+					
+				<label class="col-md-2" for="productos">Productos:</label>
+				<select th:field="${menu.productos}" multiple="multiple">
+					<option th:each="producto :${productos}" th:value="${producto.id}" 
+							th:text="${producto.nombre}"></option>
+				</select>
+					
 			</div>
 
 

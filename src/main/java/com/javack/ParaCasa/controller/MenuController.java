@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.javack.ParaCasa.modelo.entity.Menu;
+import com.javack.ParaCasa.modelo.entity.Producto;
 import com.javack.ParaCasa.modelo.service.IMenuService;
+import com.javack.ParaCasa.modelo.service.IProductoService;
 
 @Controller
 @RequestMapping("/views/menus")
@@ -24,13 +26,18 @@ public class MenuController {
 
 	@Autowired
 	private IMenuService menuService;
+	
+	@Autowired
+	private IProductoService productoService;
 
 	@GetMapping("/")
 	public String listarMenus(Model model) {
 		List<Menu> listadoMenus = menuService.listarTodos();
+		List<Producto> listadoProductos = productoService.listarTodos();
 
 		model.addAttribute("titulo", "Lista de Menus");
 		model.addAttribute("menus", listadoMenus);
+		model.addAttribute("productos", listadoProductos);
 		return "/views/menus/listar";
 	}
 
@@ -40,6 +47,7 @@ public class MenuController {
 		Menu menu = new Menu();
 
 		model.addAttribute("titulo", "Formulario: nuevo Menu");
+		model.addAttribute("productos", productoService.listarTodos());
 		model.addAttribute("menu", menu);
 
 		return "/views/menus/frmCrear";
@@ -52,6 +60,7 @@ public class MenuController {
 
 			model.addAttribute("titulo", "Formulario: nuevo Menu");
 			model.addAttribute("menu", menu);
+			model.addAttribute("productos", productoService.listarTodos());
 			System.out.println("Hubo problemas al rellenar el formulario, intentelo de nuevo");
 			return "/views/menus/frmCrear";
 		}
@@ -87,6 +96,7 @@ public class MenuController {
 
 		model.addAttribute("titulo", "Formulario: nuevo Menu");
 		model.addAttribute("menu", menu);
+		model.addAttribute("productos", productoService.listarTodos());
 
 		return "/views/menus/frmCrear";
 	}
@@ -123,8 +133,9 @@ public class MenuController {
 	}
 
 	@GetMapping("/confirmDelete/{id}")
-	public String pantallaEliminar(@PathVariable("id") Long id, Model modelo) {
-		modelo.addAttribute("menu", menuService.buscarPorId(id));
+	public String pantallaEliminar(@PathVariable("id") Long id, Model model) {
+		model.addAttribute("menu", menuService.buscarPorId(id));
+		model.addAttribute("productos", productoService.listarTodos());
 		return "/views/menus/eliminarMenu";
 
 	}
