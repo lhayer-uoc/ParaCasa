@@ -35,7 +35,7 @@ public class ProductoController {
 
 		model.addAttribute("titulo", "Lista de Productos");
 		model.addAttribute("productos", listadoProductos);
-		return "/views/productos/listar";
+		return "views/productos/listar";
 	}
 
 
@@ -50,7 +50,7 @@ public class ProductoController {
 		model.addAttribute("producto", producto);
 		model.addAttribute("tipos", tipos);
 
-		return "/views/productos/frmCrear";
+		return "views/productos/frmCrear";
 	}
 
 
@@ -102,7 +102,7 @@ public class ProductoController {
 		model.addAttribute("producto", producto);
 		model.addAttribute("tipos", tipos);
 
-		return "/views/productos/frmCrear";
+		return "views/productos/frmCrear";
 	}
 
 	@GetMapping("/delete/{id}")
@@ -137,7 +137,7 @@ public class ProductoController {
 	@GetMapping("/confirmDelete/{id}")
 	public String pantallaEliminar(@PathVariable("id") Long id, Model modelo) {
 		modelo.addAttribute("producto", productoService.buscarPorId(id));
-		return "/views/productos/eliminarProducto";
+		return "views/productos/eliminarProducto";
 
 	}
 

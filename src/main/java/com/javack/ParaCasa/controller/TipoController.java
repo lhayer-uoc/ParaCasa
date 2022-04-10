@@ -30,7 +30,7 @@ public class TipoController {
 
 		model.addAttribute("titulo", "Lista de Tipos");
 		model.addAttribute("tipos", listadoTipos);
-		return "/views/tipos/listar";
+		return "views/tipos/listar";
 	}
 
 
@@ -43,7 +43,7 @@ public class TipoController {
 		model.addAttribute("titulo", "Formulario: nuevo Tipo");
 		model.addAttribute("tipo", tipo);
 
-		return "/views/tipos/frmCrear";
+		return "views/tipos/frmCrear";
 	}
 
 
@@ -77,19 +77,19 @@ public class TipoController {
 			if(tipo== null) {
 				System.err.println("error: El ID del tipo no existe");
 
-				return "redirect:/views/tipos/";
+				return "redirect:views/tipos/";
 			}
 		}else {
 			System.err.println("error: El ID del tipo no cumple con los requerimientos");
 
-			return "redirect:/views/tipos/";
+			return "redirect:views/tipos/";
 
 		}
 		
 		model.addAttribute("titulo", "Formulario: editar Tipo");
 		model.addAttribute("tipo", tipo);
 		
-		return "/views/tipos/frmCrear";
+		return "views/tipos/frmCrear";
 	}
 
 	@GetMapping("/delete/{id}")
@@ -126,7 +126,7 @@ public class TipoController {
 	@GetMapping("/confirmDelete/{id}")
 	public String pantallaEliminar(@PathVariable("id") Long id, Model modelo) {
 		modelo.addAttribute("tipo", tipoService.buscarPorId(id));
-		return "/views/tipos/eliminarTipo";
+		return "views/tipos/eliminarTipo";
 
 	}
 

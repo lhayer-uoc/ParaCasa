@@ -28,12 +28,12 @@ public class PedidoController {
 		model.addAttribute("titulo", "Lista de Pedidos");
 		model.addAttribute("pedidos", listaPedidos);
 		
-		return "/views/pedidos/listarPedidos";
+		return "views/pedidos/listarPedidos";
 	}
 	
 	@GetMapping("/create")
 	public String crear() {
-		return "/views/pedidos/frmCrear";
+		return "views/pedidos/frmCrear";
 	}
 	
 	@PostMapping
