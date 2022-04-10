@@ -7,10 +7,46 @@
 	<header th:replace="plantilla/template :: header"></header>
 		
 		
-	<div class="container">
-		<h1>Hola</h1>
+	<div class="container" style="margin: 2em 2em 2em 4em;">
+		<h1>Bienvenido a Javack</h1>
 	</div>
-
+	
+	<div class="box" style="margin: 5em; display: grid; grid-template-columns: auto auto auto auto auto auto auto; align-items: start; justify-content: space-between;">
+	
+		<div class="card" style=" width: 18rem; ">
+			<img src="https://www.ikea.com/images/71/d8/71d8c761f0ecac607dbe66ad3bcc2117.jpg" class="card-img-top" alt="menu_imagen" width="500px" height="200px">
+			<div class="card-body">
+				<h5 class="card-title">Menus</h5>
+				<p class="card-text">Encuentra el menu que desees.</p>
+				<a th:href="@{/views/menus/}" class="btn btn-primary">Ver Menus</a>
+			</div>
+		</div>
+		<div class="card" style="width: 18rem; ">
+			<img src="https://www.holded.com/wp-content/uploads/2020/09/ciclo-de-vida-de-un-producto-4.png" class="card-img-top" alt="productos_imagen" width="500px" height="200px">
+			<div class="card-body">
+				<h5 class="card-title">Productos</h5>
+				<p class="card-text">Ojea todos nuestros productos</p>
+				<a th:href="@{/views/productos/}" class="btn btn-primary">Ver Productos</a>
+			</div>
+		</div>
+		<div class="card" style="width: 18rem; ">
+			<img src="https://bit.ly/3NYudg1" class="card-img-top" alt="tipos_imagen" width="500px" height="200px">
+			<div class="card-body">
+				<h5 class="card-title">Tipos</h5>
+				<p class="card-text">Que tipo de producto buscas?</p>
+				<a th:href="@{/views/tipos/}" class="btn btn-primary">Buscar por Tipos</a>
+			</div>
+		</div>
+		<div class="card" style="width: 18rem; ">
+			<img src="https://ak.picdn.net/shutterstock/videos/1006608874/thumb/7.jpg" class="card-img-top" alt="pedidos_imagen" width="500px" height="200px">
+			<div class="card-body">
+				<h5 class="card-title">Pedidos</h5>
+				<p class="card-text">Encuentra todos tus pedidos</p>
+				<a th:href="@{/views/pedidos/}" class="btn btn-primary">Pedidos</a>
+			</div>
+		</div>
+		
+	</div>
 
 	<footer th:replace="plantilla/template :: footer"></footer>
 	
