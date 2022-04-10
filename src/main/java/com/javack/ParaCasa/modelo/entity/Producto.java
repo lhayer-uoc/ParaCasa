@@ -2,16 +2,19 @@ package com.javack.ParaCasa.modelo.entity;
 
 import java.io.Serializable;
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+
+
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+
 
 @Entity
 @Table(name="producto")
@@ -29,9 +32,25 @@ public class Producto implements Serializable {
 	@JoinColumn(name="tipo")
 	private Tipo tipo;
 
+	public Producto() {}
+	
+	
+	
+	public Producto(Long id, @NotEmpty String nombre, String descripcion, Integer kcal, Tipo tipo) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.kcal = kcal;
+		this.tipo = tipo;
+	}
+
+
+
 	public Long getId() {
 		return id;
 	}
+	
 
 	public void setId(Long id) {
 		this.id=id;
@@ -70,6 +89,7 @@ public class Producto implements Serializable {
 	}
 	
 	
+
 
 	@Override
 	public String toString() {
