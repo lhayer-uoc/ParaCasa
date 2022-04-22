@@ -9,6 +9,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.javack.ParaCasa.util.LoginSuccessMessage;
+
 @Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 
@@ -19,8 +21,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	@Autowired
 	private BCryptPasswordEncoder passEncoder;
 	
+	@Autowired
+	private LoginSuccessMessage successMessage;
 	
 	
+	//Comprobamos que el usuario exista
+		@Autowired
+		public void configurerSecurityGlobal(AuthenticationManagerBuilder builder) throws Exception {
+			builder.jdbcAuthentication()
+			.dataSource(dataSource)
+			.passwordEncoder(passEncoder)
+			.usersByUsernameQuery("SELECT username, password, enabled FROM users WHERE username=?")
+			.authoritiesByUsernameQuery("SELECT u.username, r.rol FROM roles r INNER JOIN users u ON r.user_id=u.id WHERE u.username=?");
+		}
 	
 	
 	@Override
@@ -35,8 +48,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		
 		.antMatchers("/views/pedidos/").hasAnyRole("USER")
 		//Los pedidos pueden ser creados y guardados también por usuarios
-		.antMatchers("/views/pedidos/create").hasAnyRole("ADMIN")
-		.antMatchers("/views/pedidos/save").hasAnyRole("ADMIN")
+		.antMatchers("/views/pedidos/create").hasAnyRole("USER")
+		.antMatchers("/views/pedidos/save").hasAnyRole("USER")
 		.antMatchers("/views/pedidos/edit/**").hasAnyRole("ADMIN")
 		.antMatchers("/views/pedidos/delete/**").hasAnyRole("ADMIN")
 		
@@ -55,7 +68,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		.antMatchers("/views/tipos/delete/**").hasAnyRole("ADMIN")
 		.anyRequest().authenticated()
 		.and()
-		.formLogin().loginPage("/login")
+		.formLogin()
+			.successHandler(successMessage)
+			.loginPage("/login")
 		.permitAll()
 		.and()
 		.logout().permitAll();
@@ -65,14 +80,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 
 
 
-	//Comprobamos que el usuario exista
-	@Autowired
-	public void configurerSecurityGlobal(AuthenticationManagerBuilder builder) throws Exception {
-		builder.jdbcAuthentication()
-		.dataSource(dataSource)
-		.passwordEncoder(passEncoder)
-		.usersByUsernameQuery("SELECT username, password, enabled FROM users WHERE username=?")
-		.authoritiesByUsernameQuery("SELECT u.username, r.rol FROM roles r INNER JOIN users u ON r.user_id=u.id WHERE u.username=?");
-	}
+	
 	
 }

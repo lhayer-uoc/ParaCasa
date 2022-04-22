@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.javack.ParaCasa.modelo.entity.Menu;
 import com.javack.ParaCasa.modelo.entity.Producto;
@@ -54,7 +55,8 @@ public class MenuController {
 	}
 
 	@PostMapping("/save")
-	public String guardar(@Valid @ModelAttribute Menu menu, BindingResult result, Model model) {
+	public String guardar(@Valid @ModelAttribute Menu menu, BindingResult result, Model model,
+			RedirectAttributes attribute) {
 
 		if (result.hasErrors()) {
 
@@ -67,12 +69,12 @@ public class MenuController {
 
 		menuService.guardar(menu);
 		System.out.println("Menu guardado con exito");
-
+		attribute.addFlashAttribute("success", "Menu guardado con exito");
 		return "redirect:/views/menus/";
 	}
 
 	@GetMapping("/edit/{id}")
-	public String editar(@PathVariable("id") Long idMenu, Model model) {
+	public String editar(@PathVariable("id") Long idMenu, Model model, RedirectAttributes attribute) {
 
 		Menu menu = null;
 
@@ -84,12 +86,12 @@ public class MenuController {
 
 			if (menu == null) {
 				System.err.println("error: El ID del cliente no existe");
-
+				attribute.addFlashAttribute("error", "error: El ID del cliente no existe");
 				return "redirect:/views/menus/";
 			}
 		} else {
 			System.err.println("error: El ID del cliente no cumple con los requerimientos");
-
+			attribute.addFlashAttribute("error", "error: El ID del cliente no cumple con los requerimientos");
 			return "redirect:/views/menus/";
 
 		}
@@ -102,7 +104,7 @@ public class MenuController {
 	}
 
 	@GetMapping("/delete/{id}")
-	public String eliminar(@PathVariable("id") Long idMenu) {
+	public String eliminar(@PathVariable("id") Long idMenu, RedirectAttributes attribute) {
 
 		Menu menu = null;
 
@@ -114,20 +116,20 @@ public class MenuController {
 
 			if (menu == null) {
 				System.err.println("error: El ID del cliente no existe");
-
+				attribute.addFlashAttribute("error", "error: El ID del cliente no existe");
 				return "redirect:/views/menus/";
 			}
 		} else {
 			System.err.println("error: El ID del cliente no cumple con los requerimientos");
-
+			attribute.addFlashAttribute("error", "error: El ID del cliente no cumple con los requerimientose");
 			return "redirect:/views/menus/";
 
 		}
 
 		menuService.eliminar(idMenu);
-
 		System.out.println("Registro de menu eliminado con exito");
-
+		attribute.addFlashAttribute("warning", "atencion: Menu eliminado con exito");
+		
 		return "redirect:/views/menus/";
 
 	}
