@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <head th:replace="plantilla/template :: head">
 </head>
 
@@ -12,16 +14,17 @@
 
 	<div class="container">
 
-		<a class="btn btn-primary btn-sm" th:href="@{/views/menus/create}"
+		<a class="btn btn-primary btn-sm" sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/views/menus/create}"
 			th:text="'Nuevo Menu'" title="Crear Nuevo Menu"></a>
+			
 		<table class="table">
 			<thead class="thead-dark">
 				<tr>
 					<th scope="col">Id</th>
 					<th scope="col">Precio</th>
 					<th scope="col">Productos</th>
-					<th scope="col">Editar</th>
-					<th scope="col">Eliminar</th>
+					<th scope="col" sec:authorize="hasRole('ROLE_ADMIN')">Editar</th>
+					<th scope="col" sec:authorize="hasRole('ROLE_ADMIN')">Eliminar</th>
 				</tr>
 			</thead>
 
@@ -37,12 +40,12 @@
 						</th:block>				
 					</td>
 					
-					<td><a class="btn btn-success btn-sm"
+					<td sec:authorize="hasRole('ROLE_ADMIN')"><a class="btn btn-success btn-sm"
 						th:href="@{/views/menus/edit/} + ${cl.id}" 
 						th:text="'Editar'"
 						title="Editar Menu"></a></td>
 
-					<td><a class="btn btn-danger btn-sm"
+					<td sec:authorize="hasRole('ROLE_ADMIN')"><a class="btn btn-danger btn-sm"
 						th:href="@{/views/menus/confirmDelete/} + ${cl.id}" 
 						th:text="'Eliminar'"
 						title="Eliminar Menu"

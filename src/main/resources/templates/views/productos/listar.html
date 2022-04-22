@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 	<head th:replace="plantilla/template :: head">
 	</head>
 
@@ -12,7 +13,7 @@
 
 	<div class="container">
 
-		<a class="btn btn-primary btn-sm" th:href="@{/views/productos/create}"
+		<a class="btn btn-primary btn-sm" sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/views/productos/create}"
 			th:text="'Nuevo Producto'" title="Crear Nuevo Producto"></a>
 		<table class="table">
 			<thead class="thead-dark">
@@ -22,8 +23,8 @@
 					<th scope="col">Descripcion</th>
 					<th scope="col">Kcal</th>
 					<th scope="col">Tipo</th>
-					<th scope="col">Editar</th>
-					<th scope="col">Eliminar</th>
+					<th scope="col" sec:authorize="hasRole('ROLE_ADMIN')">Editar</th>
+					<th scope="col" sec:authorize="hasRole('ROLE_ADMIN')">Eliminar</th>
 				</tr>
 			</thead>
 
@@ -34,12 +35,12 @@
 					<td th:text="${cl.descripcion}"></td>
 					<td th:text="${cl.kcal}"></td>
 					<td th:text="${cl.tipo.nombre}"></td>
-					<td><a class="btn btn-success btn-sm"
+					<td sec:authorize="hasRole('ROLE_ADMIN')"><a class="btn btn-success btn-sm"
 						th:href="@{/views/productos/edit/} + ${cl.id}" 
 						th:text="'Editar'"
 						title="Editar Tipo"></a></td>
 
-					<td><a class="btn btn-danger btn-sm"
+					<td sec:authorize="hasRole('ROLE_ADMIN')"><a class="btn btn-danger btn-sm"
 						th:href="@{/views/productos/confirmDelete/} + ${cl.id}" 
 						th:text="'Eliminar'"
 						title="Eliminar Tipo"></a></td>
