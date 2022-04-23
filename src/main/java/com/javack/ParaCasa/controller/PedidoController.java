@@ -68,7 +68,7 @@ public class PedidoController {
 		
 		pedidoService.guardar(pedido);
 		System.out.println("Pedido Realizado");
-		return "views/pedidos/frmCrear";
+		return "redirect:/views/pedidos/";
 	}
 	
 	@GetMapping("/edit/{id}")
