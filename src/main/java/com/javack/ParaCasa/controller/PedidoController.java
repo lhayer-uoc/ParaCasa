@@ -32,11 +32,11 @@ public class PedidoController {
 	@GetMapping("/")
 	public String listarPedidos(Model model) {
 		
-		List<Pedido> listaPedidos = pedidoService.listarTodos();
+		List<Pedido> listarPedidos = pedidoService.listarTodos();
 		List<Menu> listadoMenus = menuService.listarTodos();
 		
 		model.addAttribute("titulo", "Lista de Pedidos");
-		model.addAttribute("pedidos", listaPedidos);
+		model.addAttribute("pedidos", listarPedidos);
 		model.addAttribute("menus", listadoMenus);
 		
 		return "views/pedidos/listarPedidos";
@@ -68,7 +68,7 @@ public class PedidoController {
 		
 		pedidoService.guardar(pedido);
 		System.out.println("Pedido Realizado");
-		return "redirect:/views/pedidos/";
+		return "views/pedidos/frmCrear";
 	}
 	
 	@GetMapping("/edit/{id}")
@@ -93,7 +93,7 @@ public class PedidoController {
 
 		}
 
-		model.addAttribute("titulo", "Haz tu pedido");
+		model.addAttribute("titulo", "Edita tu pedido");
 		model.addAttribute("pedido", pedido);
 		model.addAttribute("menus", menuService.listarTodos());
 		
