@@ -50,19 +50,19 @@ public class PedidoController {
 		model.addAttribute("titulo", "Haz tu pedido");
 		model.addAttribute("menus", menuService.listarTodos());
 		model.addAttribute("pedido", pedido);
-		
 		return "views/pedidos/frmCrear";
 	}
 	
 	@PostMapping ("/save")
 	public String guardar(@Valid @ModelAttribute Pedido pedido, BindingResult result, Model model) {
 		
+		
 		if (result.hasErrors()) {
 
 			model.addAttribute("titulo", "Haz tu pedido");
 			model.addAttribute("pedido", pedido);
 			model.addAttribute("menus", menuService.listarTodos());
-			System.out.println("Hubo problemas completar el pedido,por favor intentelo de nuevo");
+			System.out.println("Hubo problemas completar el pedido, por favor intentelo de nuevo");
 			return "views/pedidos/frmCrear";
 		}
 		
@@ -72,7 +72,7 @@ public class PedidoController {
 	}
 	
 	@GetMapping("/edit/{id}")
-	public String editar(@PathVariable("id") int id, Model model) {
+	public String editar(@PathVariable("id") Long id, Model model) {
 
 		Pedido pedido = null;
 
@@ -101,7 +101,7 @@ public class PedidoController {
 	}
 	
 	@GetMapping("/delete/{id}")
-	public String eliminar(@PathVariable("id") int id) {
+	public String eliminar(@PathVariable("id") Long id) {
 
 		Pedido pedido = null;
 
@@ -132,7 +132,7 @@ public class PedidoController {
 	}
 
 	@GetMapping("/confirmDelete/{id}")
-	public String pantallaEliminar(@PathVariable("id") int id, Model model) {
+	public String pantallaEliminar(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("pedido", pedidoService.buscarPorId(id));
 		model.addAttribute("menus", menuService.listarTodos());
 		return "views/pedidos/eliminarPedido";

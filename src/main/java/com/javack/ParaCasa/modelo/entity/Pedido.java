@@ -26,19 +26,24 @@ public class Pedido implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
+	private long id;
+	
 	@ManyToMany
-	@JoinTable(name="pedido_menu",
+	@JoinTable	(name="pedido_menu",
 			   joinColumns= @JoinColumn(name="id_pedido"),
 			   inverseJoinColumns= @JoinColumn(name="id_menu"))	
 	
 	private Set<Menu> menus;
 	
 	private LocalDateTime fecha;
-	private int id_usuario;
 	
+	
+	@NotNull
+	@DecimalMin("1.0") @DecimalMax("999.9")
 	private double total;
 	
+	@NotNull
+	private int id_usuario;
 	
 	
 	
@@ -46,7 +51,7 @@ public class Pedido implements Serializable {
 	
 	public Pedido() {}
 	
-	public Pedido(int id, Set<Menu> menus, LocalDateTime fecha,double total, int id_usuario) {
+	public Pedido(long id, Set<Menu> menus,@NotNull LocalDateTime fecha,@NotNull @DecimalMin("1.0") @DecimalMax("999.9") double total,@NotNull int id_usuario) {
 		super();
 		this.id = id;
 		this.menus = menus;
@@ -56,11 +61,11 @@ public class Pedido implements Serializable {
 		
 	}
 	
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 	
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
