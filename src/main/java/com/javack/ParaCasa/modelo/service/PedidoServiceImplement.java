@@ -27,13 +27,13 @@ public class PedidoServiceImplement implements IPedidoService {
 	}
 
 	@Override
-	public Pedido buscarPorId(int id) {
+	public Pedido buscarPorId(long id) {
 		// TODO Auto-generated method stub
 		return pedidoRepository.findById(id).orElse(null);
 	}
 
 	@Override
-	public void eliminar(int id) {
+	public void eliminar(long id) {
 		// TODO Auto-generated method stub
 		pedidoRepository.deleteById(id);
 

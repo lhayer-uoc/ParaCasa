@@ -11,11 +11,12 @@
 		<h1 th:text="${titulo}"></h1>
 	</div>
 
-	<p>
-	<div class="container"> <div class="d-grid gap-2">
-		<a class="btn btn-primary" type="button" th:href="@{/views/pedidos/create}">Hacer un Pedido</a>
-	</div> </div>
-	</p>
+	
+	<div class="container" style="padding-top:5px"> 
+		
+		<a class="btn btn-primary" style="width:100%" th:href="@{/views/pedidos/create}" th:text="'Hacer un Pedido'" title="Nuevo Pedido"></a>
+	</div> 
+
 	
 	<div class="container">
 		<table class="table">
@@ -26,15 +27,36 @@
 					<th scope="col">ID Menu</th>
 					<th scope="col">Total</th>
 					<th scope="col">Usuario</th>
+					<th scope="col">Editar</th>
+					<th scope="col">Eliminar</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="ped:${pedidos}">
 					<th scope="row" th:text="${ped.id}"></th>
 					<td th:text="${ped.fecha}"></td>
-					<td th:text="${ped.id_menu}"></td>
+					<td>
+						<th:block th:each="producto,iter: ${cl.productos}">
+							<label th:text="${producto.nombre}"></label><br>
+						<th:block th:if="${!iter.last}"></th:block>	
+						</th:block>				
+					</td>
+					
 					<td th:text="${ped.total}"></td>
-					<td th:text="${ped.id_usuario}"></td>
+		
+					
+					
+					<td><a class="btn btn-success btn-sm"
+						th:href="@{/views/pedidos/edit/} + ${cl.id}" 
+						th:text="'Editar'"
+						title="Editar Pedido"></a></td>
+
+					<td><a class="btn btn-danger btn-sm"
+						th:href="@{/views/pedidos/confirmDelete/} + ${cl.id}" 
+						th:text="'Eliminar'"
+						title="Eliminar Pedido"
+						
+						></a></td>
 				</tr>
 			</tbody>
 		</table>

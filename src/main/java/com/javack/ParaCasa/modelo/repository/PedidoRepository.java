@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.javack.ParaCasa.modelo.entity.Pedido;
 
 @Repository
-public interface PedidoRepository extends CrudRepository<Pedido, Integer> {
+public interface PedidoRepository extends CrudRepository<Pedido, Long> {
 
 }
