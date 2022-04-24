@@ -32,9 +32,9 @@ public class Pedido implements Serializable {
 	@JoinTable	(name="pedido_menu",
 			   joinColumns= @JoinColumn(name="id_pedido"),
 			   inverseJoinColumns= @JoinColumn(name="id_menu"))	
-	
 	private Set<Menu> menus;
 	
+	@NotNull
 	private LocalDateTime fecha;
 	
 	
