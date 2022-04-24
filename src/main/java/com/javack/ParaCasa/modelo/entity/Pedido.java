@@ -38,12 +38,12 @@ public class Pedido implements Serializable {
 	private LocalDateTime fecha;
 	
 	
+	
 	@NotNull
 	@DecimalMin("1.0") @DecimalMax("999.9")
 	private double total;
 	
-	@NotNull
-	private int id_usuario;
+	
 	
 	
 	
@@ -51,12 +51,11 @@ public class Pedido implements Serializable {
 	
 	public Pedido() {}
 	
-	public Pedido(long id, Set<Menu> menus,@NotNull LocalDateTime fecha,@NotNull @DecimalMin("1.0") @DecimalMax("999.9") double total,@NotNull int id_usuario) {
+	public Pedido(long id, Set<Menu> menus,@NotNull LocalDateTime fecha, @NotNull @DecimalMin("1.0") @DecimalMax("999.9") double total) {
 		super();
 		this.id = id;
 		this.menus = menus;
 		this.fecha = fecha;
-		this.id_usuario = id_usuario;
 		this.total = total;
 		
 	}
@@ -81,12 +80,7 @@ public class Pedido implements Serializable {
 	public void setTotal(double total) {
 		this.total = total;
 	}
-	public int getId_usuario() {
-		return id_usuario;
-	}
-	public void setId_usuario(int id_usuario) {
-		this.id_usuario = id_usuario;
-	}
+	
 	public Set<Menu> getMenus() {
 		return menus;
 	}
@@ -95,13 +89,14 @@ public class Pedido implements Serializable {
 		this.menus = menus;
 	}
 
-	
-	
 	@Override
 	public String toString() {
-		return "Pedido [id=" + id + ", menu=" + menus + ", fecha=" + fecha + ", id_usuario=\"\r\n"
-				+ "				+ id_usuario + \", total=" + total + "]";
+		return "Pedido [id=" + id + ", menus=" + menus + ", fecha=" + fecha + ", total="
+				+ total + "]";
 	}
+
+	
+	
 	
 		
 	
