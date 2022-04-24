@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -31,6 +32,7 @@ public class MenuController {
 	@Autowired
 	private IProductoService productoService;
 
+	//@Secured("ROLE_USER, ROLE_ADMIN")
 	@GetMapping("/")
 	public String listarMenus(Model model) {
 		List<Menu> listadoMenus = menuService.listarTodos();
@@ -42,6 +44,7 @@ public class MenuController {
 		return "views/menus/listar";
 	}
 
+	//@Secured("ROLE_ADMIN")
 	@GetMapping("/create")
 	public String crear(Model model) {
 
