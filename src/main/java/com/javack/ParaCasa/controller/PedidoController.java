@@ -62,7 +62,7 @@ public class PedidoController {
 			model.addAttribute("titulo", "Haz tu pedido");
 			model.addAttribute("pedido", pedido);
 			model.addAttribute("menus", menuService.listarTodos());
-			System.out.println("Hubo problemas completar el pedido, por favor intentelo de nuevo");
+			System.out.println("Hubo problemas al completar el pedido, por favor intentelo de nuevo");
 			return "views/pedidos/frmCrear";
 		}
 		

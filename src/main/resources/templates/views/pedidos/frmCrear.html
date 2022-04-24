@@ -34,12 +34,12 @@
 							max="2022-06-14T00:00"> 
 						
      
-					<label class="col-md-2" for="id_usuario">Codigo de Usuario:</label> 
+					<!-- <label class="col-md-2" for="id_usuario">Codigo de Usuario:</label> 
 					<input type="number" step="1" th:field="*{id_usuario}" class="form-control form-control-sm col-md-6" id="id_usuario"
 						placeholder="Codigo de Usuario">
 						<small class="form-text text-danger" th:if="${#fields.hasErrors('id_usuario')}"
 							th:errors="*{id_usuario}">
-						</small>
+						</small> -->
 					
 				
 					<label class="col-md-2" for="total">Total:</label> 
@@ -49,11 +49,12 @@
 							th:errors="*{total}">
 						</small>					
 				</div>
+				
+				<div class="card-footer bd-dark" style="margin-top:20px">
+					<input type="submit" class="btn btn-primary btn-sm" value="Guardar"/>
+				</div>
 			</form>
 		
-			<div class="card-footer bd-dark" style="margin-top:20px">
-				<input type="submit" class="btn btn-primary btn-sm" value="Guardar"/>
-			</div>
 		</div>
 	</div>
 
