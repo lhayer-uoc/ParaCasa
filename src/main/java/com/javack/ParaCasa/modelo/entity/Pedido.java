@@ -12,8 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.DecimalMax;
-import javax.validation.constraints.DecimalMin;
+
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -39,8 +38,6 @@ public class Pedido implements Serializable {
 	
 	
 	
-	@NotNull
-	@DecimalMin("1.0") @DecimalMax("999.9")
 	private double total;
 	
 	
@@ -51,7 +48,7 @@ public class Pedido implements Serializable {
 	
 	public Pedido() {}
 	
-	public Pedido(long id, Set<Menu> menus,@NotNull LocalDateTime fecha, @NotNull @DecimalMin("1.0") @DecimalMax("999.9") double total) {
+	public Pedido(long id, Set<Menu> menus,@NotNull LocalDateTime fecha, double total) {
 		super();
 		this.id = id;
 		this.menus = menus;

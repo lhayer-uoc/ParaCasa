@@ -42,6 +42,11 @@
 					</ul>
 					<ul class="navbar-nav ms-auto">
 					
+					
+					<li sec:authorize="!isAuthenticated()">
+						<a class="btn btn-outline-warning" th:href="@{/registro}">Registrarse</a>
+					</li>
+					
 						<li sec:authorize="!isAuthenticated()">
 							<a class="btn btn-outline-warning" th:href="@{/login}">Iniciar sesion</a>
 						</li>
