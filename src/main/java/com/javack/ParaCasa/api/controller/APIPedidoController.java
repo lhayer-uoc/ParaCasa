@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.javack.ParaCasa.modelo.entity.Pedido;
 import com.javack.ParaCasa.modelo.service.IPedidoService;
 
+import io.swagger.v3.oas.annotations.Operation;
+
 
 @RestController
 @RequestMapping("/api")
@@ -25,11 +27,13 @@ public class APIPedidoController {
 	@Autowired
 	private IPedidoService pedidoService;
 	
+	@Operation(summary = "Listar todos los pedidos")
 	@GetMapping("/pedidos")
 	public List<Pedido> listarPedidos(){
 		return pedidoService.listarTodos();
 	}
 	
+	@Operation(summary = "Buscar un pedido por id")
 	@GetMapping("/pedidos/{pedidoId}")
     public Pedido buscarPedido(@PathVariable Long pedidoId){
         Pedido pedido = pedidoService.buscarPorId(pedidoId);
@@ -41,6 +45,7 @@ public class APIPedidoController {
         return pedido;
     }
 	
+	@Operation(summary = "Crear un pedido")
 	@PostMapping("/pedidos")
     public Pedido crearPedido(@RequestBody Pedido pedido) {
         pedidoService.guardar(pedido);
@@ -49,6 +54,7 @@ public class APIPedidoController {
 
     }
 	
+	@Operation(summary = "Actualizar un pedido")
 	@PutMapping("/pedidos")
     public Pedido actualizarPedido(@RequestBody Pedido pedido) {
 
@@ -57,6 +63,7 @@ public class APIPedidoController {
         return pedido;
     }
 	
+	@Operation(summary = "Eliminar un pedido")
 	@DeleteMapping("pedidos/{pedidoId}")
     public String eliminarPedido(@PathVariable Long pedidoId) {
 

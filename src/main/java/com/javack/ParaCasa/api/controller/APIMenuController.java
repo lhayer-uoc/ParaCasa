@@ -13,9 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.javack.ParaCasa.modelo.entity.Menu;
-import com.javack.ParaCasa.modelo.entity.Tipo;
 import com.javack.ParaCasa.modelo.service.IMenuService;
-import com.javack.ParaCasa.modelo.service.ITipoService;
+
+import io.swagger.v3.oas.annotations.Operation;
+
 
 @RestController
 @RequestMapping("/api")
@@ -25,11 +26,13 @@ public class APIMenuController {
 	@Autowired
 	private IMenuService menuService;
 	
+	@Operation(summary = "Listar todos los menús")
 	@GetMapping("/menus")
 	public List<Menu> listarMenus(){
 		return menuService.listarTodos();
 	}
 	
+	@Operation(summary = "Buscar un menú por id")
 	@GetMapping("/menus/{menuId}")
     public Menu buscarTipo(@PathVariable Long menuId){
         Menu menu = menuService.buscarPorId(menuId);
@@ -41,6 +44,7 @@ public class APIMenuController {
         return menu;
     }
 	
+	@Operation(summary = "Crear un menú")
 	@PostMapping("/menus")
     public Menu crearMenu(@RequestBody Menu menu) {
         menuService.guardar(menu);
@@ -49,6 +53,7 @@ public class APIMenuController {
 
     }
 	
+	@Operation(summary = "Actualizar un menú por id")
 	@PutMapping("/menus")
     public Menu actualizarMenu(@RequestBody Menu menu) {
 
@@ -57,6 +62,7 @@ public class APIMenuController {
         return menu;
     }
 	
+	@Operation(summary = "Eliminar un menú por id")
 	@DeleteMapping("menus/{menuId}")
     public String eliminarMenu(@PathVariable Long menuId) {
 
